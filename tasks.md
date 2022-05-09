@@ -29,8 +29,7 @@ SELECT * FROM divisions WHERE (country = 'Scotland') AND (id < 19);
 4) Find the division code for the Bundesliga. Use that code to find out how many matches Freiburg have played in the Bundesliga since the data started being collected.
 
 ```sql
-SELECT COUNT(*) FROM matches WHERE (division_code = 'D1') AND (hometeam = 'Freiburg') OR (awayteam = 'Freiburg');
-
+SELECT COUNT(id) FROM matches WHERE division_code = 'D1' AND (hometeam = 'Freiburg' OR awayteam = 'Freiburg');
 
 ```
 
@@ -51,7 +50,7 @@ to list all the teams
 
 or 
 
-SELECT COUNT( DISTINCT hometeam ) FROM matches WHERE (division_code = 'F1') OR (division_code = 'F2');
+SELECT COUNT( DISTINCT hometeam ) FROM matches WHERE (division_code = 'F1' OR division_code = 'F2');
 
 to get specific count
 
@@ -60,7 +59,7 @@ to get specific count
 7) Have Huddersfield played Swansea in the period covered?
 
 ```sql
-SELECT COUNT ( DISTINCT matches ) FROM matches WHERE (hometeam = 'Swansea') AND (awayteam = 'Huddersfield') OR (hometeam = 'Huddersfield') AND (awayteam = 'Swansea');
+SELECT COUNT ( DISTINCT matches ) FROM matches WHERE (hometeam = 'Swansea' AND awayteam = 'Huddersfield') OR (hometeam = 'Huddersfield' AND awayteam = 'Swansea');
 12 times in total
 
 ```
@@ -68,7 +67,7 @@ SELECT COUNT ( DISTINCT matches ) FROM matches WHERE (hometeam = 'Swansea') AND 
 8) How many draws were there in the Eredivisie between 2010 and 2015?
 
 ```sql
-<!-- Copy solution here -->
+SELECT COUNT ( DISTINCT matches ) FROM matches WHERE (division_code = 'N1') AND (season >= 2010 AND season <= 2015) AND (ftr = 'D');
 
 
 ```
